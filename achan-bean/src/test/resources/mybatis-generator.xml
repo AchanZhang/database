@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="${user.dir}/achan-bean/src/test/resources/postgresql-42.2.2.jar"/>
+    <context id="mybatis-generator" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value='"'/>
+        <property name="endingDelimiter" value='"'/>
+        <property name="autoDelimitKeywords" value="true"/>
+
+        <plugin type="com.achanzhang.mydatabase.achandatabase.mybatis.OverwriteXmlPlugin"/>
+        <commentGenerator type="com.achanzhang.mydatabase.achandatabase.mybatis.MyBatisCommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        <!--<commentGenerator>-->
+            <!--<property name="suppressAllComments" value="false"/>-->
+        <!--</commentGenerator>-->
+
+<!--        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://192.168.10.244:5432/iot_ms" userId="postgres" password="postgres"/>-->
+        <connectionFactory>
+            <property name="driverClass" value="org.postgresql.Driver"/>
+            <property name="connectionURL" value="jdbc:postgresql://localhost:5433/test1"/>
+            <property name="userId" value="postgres"/>
+            <property name="password" value="postgres"/>
+        </connectionFactory>
+
+        <javaModelGenerator targetPackage="com.achanzhang.mydatabase.achandatabase.beans.entry" targetProject="${user.dir}/achan-bean/src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper/base" targetProject="${user.dir}/achan-bean/src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.achanzhang.mydatabase.achandatabase.dao.base" targetProject="${user.dir}/achan-bean/src/main/java" type="MIXEDMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 数据库表映射配置 -->
+        <table tableName="class" domainObjectName="ClassPO" mapperName="ClassBaseDao" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="class_number" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="student" domainObjectName="StudentPO" mapperName="StudentBaseDao" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="student_number" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

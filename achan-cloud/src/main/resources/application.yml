@@ -1,0 +1,23 @@
+debug: true
+
+server:
+  port: 8090
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.achanzhang.mydatabase.achandatabase.beans
+
+spring:
+  datasource:
+    hikari:
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://127.0.0.1:5433/test1?autoReconnect=true&ampallowMultiQueries=true
+      auto-commit: true
+      connection-timeout: 20000
+      max-lifetime: 1800000
+      minimum-idle: 1
+      maximum-pool-size: 5
+      idle-timeout: 30000

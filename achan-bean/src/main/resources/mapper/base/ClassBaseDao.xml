@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.achanzhang.mydatabase.achandatabase.dao.base.ClassBaseDao">
+  <resultMap id="BaseResultMap" type="com.achanzhang.mydatabase.achandatabase.beans.entry.ClassPO">
+    <id column="class_number" jdbcType="INTEGER" property="classNumber" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    class_number, class_name
+  </sql>
+  <insert id="insertSelective" keyColumn="class_number" keyProperty="classNumber" parameterType="com.achanzhang.mydatabase.achandatabase.beans.entry.ClassPO" useGeneratedKeys="true">
+    insert into class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="className != null">
+        class_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.achanzhang.mydatabase.achandatabase.beans.entry.ClassPO">
+    update class
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where class_number = #{classNumber,jdbcType=INTEGER}
+  </update>
+</mapper>
