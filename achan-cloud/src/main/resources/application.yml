@@ -16,10 +16,15 @@ spring:
       username: postgres
       password: postgres
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://127.0.0.1:5433/test1?autoReconnect=true&ampallowMultiQueries=true
+      jdbc-url: jdbc:postgresql://127.0.0.1:5433/test3?autoReconnect=true&ampallowMultiQueries=true
       auto-commit: true
       connection-timeout: 20000
       max-lifetime: 1800000
       minimum-idle: 1
       maximum-pool-size: 5
       idle-timeout: 30000
+  flyway:
+    enabled: true
+    clean-disabled: true
+    baseline-on-migrate: true
+    baseline-version: 1.3
